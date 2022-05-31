@@ -1,8 +1,26 @@
 const cards = document.querySelectorAll('.game-card');
+const boards = document.querySelectorAll('.game-board');
 
 let hasFlipped = false;
 let blockBoard = false;
 let firstCard, secondCard;
+let level = None;
+
+
+
+// function setLevel(level) {
+//     if (level === easy) {
+//         boards.remove('.game-board-medium');
+//         boards.remove(".game-board-hard");
+//     } else  if (level === medium) {
+//         boards.remove(".game-board-easy");
+//         boards.remove(".game-board-hard");
+//     } else {
+//         boards.remove(".game-board-easy");
+//         boards.remove(".game-board-medium");
+//     }
+
+// }
 
 function flipCard() {
     if (blockBoard) return;
