@@ -3,12 +3,17 @@ const cards = document.querySelectorAll('.game-card');
 let hasFlipped = false;
 let blockBoard = false;
 let firstCard, secondCard;
+let clickSound = new Audio('click.mp3')
+let goodSound = new Audio('good.mp3')
+let badSound = new Audio('bad.mp3')
+
 
 function flipCard() {
     if (blockBoard) return;
     if (this===firstCard) return;
 
     this.classList.toggle('flip');
+    clickSound.play();
 
     if (!hasFlipped) {
         hasFlipped = true;
@@ -16,10 +21,6 @@ function flipCard() {
     } else {
         secondCard = this;
         matchCheck();
-    }
-    function resetBoard() {
-        [hasFlipped, blockBoard] = [false, false];
-        [firstCard, secondCard] = [null, null];
     }
 }
 
@@ -34,6 +35,7 @@ function matchCheck () {
 function freezeCards() {
     firstCard.removeEventListener('click',flipCard);
     secondCard.removeEventListener('click',flipCard);
+    goodSound.play();
     resetBoard();
 }
 
@@ -42,6 +44,7 @@ function restoreCards() {
     setTimeout(() => {
         firstCard.classList.remove('flip')
         secondCard.classList.remove('flip')
+        badSound.play();
         resetBoard();
         }, 1200)
 }
